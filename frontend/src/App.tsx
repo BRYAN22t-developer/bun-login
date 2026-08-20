@@ -5,6 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
+import HomePage from "./pages/home/home";
 
 const CLIENT_ID =
   "826707910170-rq6561njkh7im5tkhc8eua59ons0bct2.apps.googleusercontent.com";
@@ -45,7 +46,7 @@ function UserPage() {
 }
 
 const router = createBrowserRouter([
-  { path: "/", element: <a href={URL}>Login via Google</a> },
+  { path: "/", element: <HomePage /> },
   { path: "/user", element: <UserPage /> },
 ]);
 
