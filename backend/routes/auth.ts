@@ -6,6 +6,8 @@ export function createAuthRouter() {
 
   const controller = new AuthController();
 
+  router.get("/google", controller.google)
+
   router.get("/callback/google", controller.googleCallback);
 
   router.post("/logout", (req, res) => {

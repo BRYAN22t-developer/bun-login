@@ -1,8 +1,3 @@
-const CLIENT_ID =
-  "826707910170-rq6561njkh7im5tkhc8eua59ons0bct2.apps.googleusercontent.com";
-
-const URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=http://localhost:5123/auth/callback/google&response_type=code&scope=openid email profile`;
-
 export default function LoginPage() {
   return (
     <>
