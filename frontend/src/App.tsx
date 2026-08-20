@@ -7,12 +7,13 @@ import {
 import "./index.css";
 import HomePage from "./pages/home/home";
 import LoginPage from "./pages/login/login";
+import { config } from "./config";
 
 function UserPage() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5123/user", { credentials: "include" })
+    fetch(`${config.BACKEND_BASE_URL}/user`, { credentials: "include" })
       .then((res) => res.json())
       .then((data) => setUser(data))
       .catch((err) => console.error("Error fetching user:", err));
@@ -25,7 +26,7 @@ function UserPage() {
       <p>{JSON.stringify(user)}</p>
       <button
         onClick={async () => {
-          const res = await fetch("http://localhost:5123/auth/logout", {
+          const res = await fetch(`${config.BACKEND_BASE_URL}/auth/logout`, {
             method: "POST",
             credentials: "include",
           });

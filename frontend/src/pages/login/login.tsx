@@ -1,3 +1,5 @@
+import { config } from "@/config";
+
 export default function LoginPage() {
   return (
     <>
@@ -38,7 +40,7 @@ export default function LoginPage() {
           </form>
           <div className="mt-2 ">
             <a
-              href="http://localhost:5123/auth/google"
+              href={`${config.BACKEND_BASE_URL}/auth/google`}
               className="flex items-center border-primary border-2 rounded-lg p-3 hover:border-primary-hover transition-transform hover:scale-105"
             >
               <GoogleSvg />
