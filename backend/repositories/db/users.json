@@ -1,0 +1,188 @@
+[
+  {
+    "id": "1",
+    "username": "alexmartinez",
+    "email": "alex.martinez@example.com",
+    "password": "TestPass01!"
+  },
+  {
+    "id": "2",
+    "username": "sofia.hernandez",
+    "email": "sofia.hernandez@example.com",
+    "password": "TestPass02!"
+  },
+  {
+    "id": "3",
+    "username": "carlos.ramirez",
+    "email": "carlos.ramirez@example.com",
+    "password": "TestPass03!"
+  },
+  {
+    "id": "4",
+    "username": "laura.garcia",
+    "email": "laura.garcia@example.com",
+    "password": "TestPass04!"
+  },
+  {
+    "id": "5",
+    "username": "diego.lopez",
+    "email": "diego.lopez@example.com",
+    "password": "TestPass05!"
+  },
+  {
+    "id": "6",
+    "username": "valentina.torres",
+    "email": "valentina.torres@example.com",
+    "password": "TestPass06!"
+  },
+  {
+    "id": "7",
+    "username": "miguel.sanchez",
+    "email": "miguel.sanchez@example.com",
+    "password": "TestPass07!"
+  },
+  {
+    "id": "8",
+    "username": "daniela.flores",
+    "email": "daniela.flores@example.com",
+    "password": "TestPass08!"
+  },
+  {
+    "id": "9",
+    "username": "jorge.mendoza",
+    "email": "jorge.mendoza@example.com",
+    "password": "TestPass09!"
+  },
+  {
+    "id": "10",
+    "username": "camila.vargas",
+    "email": "camila.vargas@example.com",
+    "password": "TestPass10!"
+  },
+  {
+    "id": "11",
+    "username": "andres.castillo",
+    "email": "andres.castillo@example.com",
+    "password": "TestPass11!"
+  },
+  {
+    "id": "12",
+    "username": "fernanda.cruz",
+    "email": "fernanda.cruz@example.com",
+    "password": "TestPass12!"
+  },
+  {
+    "id": "13",
+    "username": "ricardo.morales",
+    "email": "ricardo.morales@example.com",
+    "password": "TestPass13!"
+  },
+  {
+    "id": "14",
+    "username": "gabriela.ortiz",
+    "email": "gabriela.ortiz@example.com",
+    "password": "TestPass14!"
+  },
+  {
+    "id": "15",
+    "username": "eduardo.reyes",
+    "email": "eduardo.reyes@example.com",
+    "password": "TestPass15!"
+  },
+  {
+    "id": "16",
+    "username": "mariana.navarro",
+    "email": "mariana.navarro@example.com",
+    "password": "TestPass16!"
+  },
+  {
+    "id": "17",
+    "username": "sergio.dominguez",
+    "email": "sergio.dominguez@example.com",
+    "password": "TestPass17!"
+  },
+  {
+    "id": "18",
+    "username": "paola.jimenez",
+    "email": "paola.jimenez@example.com",
+    "password": "TestPass18!"
+  },
+  {
+    "id": "19",
+    "username": "roberto.ruiz",
+    "email": "roberto.ruiz@example.com",
+    "password": "TestPass19!"
+  },
+  {
+    "id": "20",
+    "username": "ana.mendoza",
+    "email": "ana.mendoza@example.com",
+    "password": "TestPass20!"
+  },
+  {
+    "id": "21",
+    "username": "fernando.silva",
+    "email": "fernando.silva@example.com",
+    "password": "TestPass21!"
+  },
+  {
+    "id": "22",
+    "username": "lucia.ramos",
+    "email": "lucia.ramos@example.com",
+    "password": "TestPass22!"
+  },
+  {
+    "id": "23",
+    "username": "oscar.vera",
+    "email": "oscar.vera@example.com",
+    "password": "TestPass23!"
+  },
+  {
+    "id": "24",
+    "username": "isabel.martin",
+    "email": "isabel.martin@example.com",
+    "password": "TestPass24!"
+  },
+  {
+    "id": "25",
+    "username": "raul.cabrera",
+    "email": "raul.cabrera@example.com",
+    "password": "TestPass25!"
+  },
+  {
+    "id": "26",
+    "username": "patricia.mendez",
+    "email": "patricia.mendez@example.com",
+    "password": "TestPass26!"
+  },
+  {
+    "id": "27",
+    "username": "hector.espinoza",
+    "email": "hector.espinoza@example.com",
+    "password": "TestPass27!"
+  },
+  {
+    "id": "28",
+    "username": "monica.salazar",
+    "email": "monica.salazar@example.com",
+    "password": "TestPass28!"
+  },
+  {
+    "id": "29",
+    "username": "ivan.aguilar",
+    "email": "ivan.aguilar@example.com",
+    "password": "TestPass29!"
+  },
+  {
+    "id": "30",
+    "username": "adriana.paredes",
+    "email": "adriana.paredes@example.com",
+    "password": "TestPass30!"
+  },
+  {
+    "id": "31",
+    "username": "Lucas",
+    "email": "example@google.com",
+    "provider": "Google"
+  }
+]
