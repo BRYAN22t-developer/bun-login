@@ -11,7 +11,11 @@ export function createAuthRouter() {
   router.get("/callback/google", controller.googleCallback);
 
   router.post("/logout", (req, res) => {
-    res.clearCookie("authToken").redirect(process.env.FRONTEND_URL!)
+    res.clearCookie("authToken", {
+      httpOnly: true,
+      sameSite: "lax"
+    })
+    res.status(200).json("ok")
   })
 
   return router;
