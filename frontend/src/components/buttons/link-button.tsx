@@ -5,7 +5,7 @@ const variants = {
   primary:
     "bg-primary border-surface border-2 p-2 rounded-lg cursor-pointer hover:bg-primary-hover transition-transform hover:scale-105 text-surface",
   secondary:
-    "items-center border-primary border-2 rounded-lg p-3 hover:border-primary-hover transition-transform hover:scale-105",
+    "items-center border-primary border-2 rounded-lg p-3 cursor-pointer hover:border-primary-hover transition-transform hover:scale-105",
 };
 
 export type Variant = "primary" | "secondary";

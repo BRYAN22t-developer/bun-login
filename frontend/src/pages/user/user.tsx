@@ -30,7 +30,7 @@ export default function UserPage() {
   return (
     <div>
       <p>{JSON.stringify(user)}</p>
-      <Button
+      <Button variant="secondary"
         onClick={async () => {
           try {
             const res = await fetch(`${config.BACKEND_BASE_URL}/auth/logout`, {
