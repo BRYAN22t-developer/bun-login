@@ -1,7 +1,8 @@
 import { Router } from "express";
-import type { Request, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
 import { createAuthRouter } from "./auth";
 import { JsonUsersRepository } from "../repositories/json-users";
+import { authentication } from "../middlewares/authentication";
 
 const usersResporitoy = new JsonUsersRepository();
 
@@ -12,13 +13,7 @@ export function createMainRouter() {
     res.send("Hello World!");
   });
 
-  router.get("/user", (req: Request, res: Response) => {
-    const authCookie = req.cookies.authToken;
-    if (!authCookie) {
-      return res.status(401).json({ message: "You are not logged in" });
-    }
-    res.json({ cookies: req.cookies });
-  });
+  router.get("/user", authentication, getUsers);
 
   router.get("/users/:email", async (req, res) => {
     const { email } = req.params;
@@ -31,4 +26,12 @@ export function createMainRouter() {
   router.use("/auth", createAuthRouter());
 
   return router;
+}
+
+function getUsers(req: Request, res: Response) {
+  const authCookie = req.cookies.authToken;
+  if (!authCookie) {
+    return res.status(401).json({ message: "You are not logged in" });
+  }
+  res.json({ cookies: req.cookies });
 }

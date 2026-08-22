@@ -27,15 +27,39 @@ export async function googleCallbackService(code: string) {
 
   const payload = ticket.getPayload();
 
-  if (!(await usersRepository.findByEmail(payload?.email as string))) {
-    const user = usersRepository.create({
-      username: "",
-      email: payload?.email as string,
-      provider: "Google",
-    });
+
+  const user = await usersRepository.create({
+    username: "",
+    email: payload?.email as string,
+    provider: "Google",
+  });
+
+  const email = payload?.email;
+
+  if (!email) {
+    return { ok: false, error: "Google account has no email" };
   }
 
-  const jwt = joseJwtService.sign(payload)
+  let userId = await usersRepository.create({
+    username: "",
+    email,
+    provider: "Google",
+  });
+
+  if (!userId) {
+    const user = await usersRepository.findByEmail(email);
+
+    if (!user) {
+      return { ok: false, error: "User not found" };
+    }
+
+    userId = user.id;
+  }
+
+  const jwt = await joseJwtService.sign({
+    id: userId,
+    email: payload?.email
+  })
 
   return { ok: true, data: jwt };
 }
