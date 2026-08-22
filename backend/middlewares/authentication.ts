@@ -8,8 +8,6 @@ export async function authentication(
 ) {
   const authToken = req.cookies.authToken;
 
-  console.log("authToken: ", authToken)
-
   if (!authToken) {
     res.status(401).json({ error: "Missing auth token" });
     return;
@@ -19,7 +17,6 @@ export async function authentication(
     const payload = await joseJwtService.verify(authToken);
 
     if (typeof payload.id !== "string" || typeof payload.email !== "string") {
-      console.log("payload: ", payload)
       res.status(401).json({ error: "Invalid token payload" });
       return;
     }
