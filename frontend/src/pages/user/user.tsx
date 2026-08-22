@@ -1,3 +1,4 @@
+import { Button } from "@/components/buttons/button";
 import { config } from "@/config";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -29,7 +30,7 @@ export default function UserPage() {
   return (
     <div>
       <p>{JSON.stringify(user)}</p>
-      <button
+      <Button
         onClick={async () => {
           try {
             const res = await fetch(`${config.BACKEND_BASE_URL}/auth/logout`, {
@@ -51,7 +52,7 @@ export default function UserPage() {
         }}
       >
         log out
-      </button>
+      </Button>
     </div>
   );
 }
