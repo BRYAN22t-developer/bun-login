@@ -18,3 +18,5 @@ export class JoseJwtService {
     return data;
   }
 }
+
+export const joseJwtService = new JoseJwtService()

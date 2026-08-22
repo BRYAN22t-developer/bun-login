@@ -1,5 +1,6 @@
 import { OAuth2Client } from "google-auth-library";
 import { JsonUsersRepository } from "../repositories/json-users";
+import { joseJwtService } from "./jose-jwt.service";
 
 const client = new OAuth2Client(
   process.env.GOOGLE_CLIENT_ID,
@@ -34,5 +35,7 @@ export async function googleCallbackService(code: string) {
     });
   }
 
-  return { ok: true, data: payload };
+  const jwt = joseJwtService.sign(payload)
+
+  return { ok: true, data: jwt };
 }
