@@ -1,3 +1,5 @@
+import { Button } from "@/components/buttons/button";
+import { AnchorButton } from "@/components/buttons/anchor-button";
 import { config } from "@/config";
 
 export default function LoginPage() {
@@ -31,23 +33,15 @@ export default function LoginPage() {
                 className="bg-surface/20 p-2"
               />
             </div>
-            <button
-              type="submit"
-              className="bg-primary border-surface border-2 p-2 rounded-lg w-full cursor-pointer hover:bg-primary-hover transition-transform hover:scale-105"
-            >
-              Login
-            </button>
+            <Button type="submit">Login</Button>
           </form>
           <div className="mt-2 ">
-            <a
-              href={`${config.BACKEND_BASE_URL}/auth/google`}
-              className="flex items-center border-primary border-2 rounded-lg p-3 hover:border-primary-hover transition-transform hover:scale-105"
-            >
+            <AnchorButton href={`${config.BACKEND_BASE_URL}/auth/google`} className="flex">
               <GoogleSvg />
               <span className="w-full flex justify-center text-primary font-semibold">
                 Continue with Google
               </span>
-            </a>
+            </AnchorButton>
           </div>
         </div>
       </section>
