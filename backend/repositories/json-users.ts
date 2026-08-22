@@ -49,7 +49,8 @@ export class JsonUsersRepository implements UsersRepository {
   }
 
   async create(user: Omit<User, "id">) {
-    if (await this.findByEmail(user.email)) {
+    const foundUser = await this.findByEmail(user.email)
+    if (foundUser) {
       return null;
     }
 
@@ -74,6 +75,6 @@ export class JsonUsersRepository implements UsersRepository {
        });
     }
 
-    return null
+    return id
   }
 }
