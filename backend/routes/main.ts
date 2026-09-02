@@ -2,7 +2,7 @@ import { Router } from "express";
 import type { NextFunction, Request, Response } from "express";
 import { createAuthRouter } from "./auth";
 import { JsonUsersRepository } from "../repositories/json-users";
-import { authentication } from "../middlewares/authentication";
+import { authentication } from "../middlewares/bearer-authentication";
 
 const usersResporitoy = new JsonUsersRepository();
 
@@ -20,7 +20,7 @@ export function createMainRouter() {
 
     const user = await usersResporitoy.findByEmail(email);
 
-    res.send(user)
+    res.send(user);
   });
 
   router.use("/auth", createAuthRouter());
