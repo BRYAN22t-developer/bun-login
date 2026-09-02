@@ -1,4 +1,5 @@
 import { Button } from "@/components/buttons/button";
+import { LinkButton } from "@/components/buttons/link-button";
 import { config } from "@/config";
 import { apiRequest } from "@/utils/api";
 import { useEffect, useState } from "react";
@@ -54,6 +55,7 @@ export default function UserPage() {
       >
         log out
       </Button>
+      <LinkButton to="/">Go Home</LinkButton>
     </div>
   );
 }

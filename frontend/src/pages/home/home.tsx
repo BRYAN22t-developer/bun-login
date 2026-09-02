@@ -11,14 +11,9 @@ export default function HomePage() {
           <LinkButton to="/user" variant="primary">
             Login
           </LinkButton>
-          <Button onClick={request} >request</Button>
+          <LinkButton to="/config" variant="primary">config</LinkButton>
         </div>
       </header>
     </>
   );
-}
-
-async function request() {
-  const res = await apiRequest("http://localhost:5123/test")
-  console.log(res)
 }

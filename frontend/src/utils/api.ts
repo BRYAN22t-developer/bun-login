@@ -1,5 +1,5 @@
 import { config } from "@/config";
-import { accessTokenRef } from "@/context/auth";
+import { accessTokenRef, updateReactToken } from "@/context/auth";
 
 let refreshPromise: Promise<string | null> | null = null;
 
@@ -27,7 +27,10 @@ export async function apiRequest(url: string, options: RequestInit = {}) {
 
           if (refreshed.ok) {
             const { access_token } = await refreshed.json();
+
             accessTokenRef.current = access_token;
+            updateReactToken.current(access_token);
+
             return access_token;
           }
           return null;
@@ -46,12 +49,13 @@ export async function apiRequest(url: string, options: RequestInit = {}) {
         ...options,
         headers: {
           ...options.headers,
-          Authorization: `Bearer ${newAccessToken}`, // Typo fixed here
+          Authorization: `Bearer ${newAccessToken}`,
         },
         credentials: "include",
       });
     } else {
       accessTokenRef.current = null;
+      updateReactToken.current(null);
       redirectToLogin();
     }
   }

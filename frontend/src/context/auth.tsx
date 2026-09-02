@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
 
 type AuthContextType = {
   accessToken: string | null;
@@ -9,8 +9,15 @@ export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const accessTokenRef = { current: null as string | null };
 
+export const updateReactToken = { current: (token: string | null) => {} };
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [accessToken, setAccessToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    accessTokenRef.current = accessToken;
+    updateReactToken.current = setAccessToken;
+  }, [accessToken]);
 
   return (
     <AuthContext.Provider value={{ accessToken, setAccessToken }}>
@@ -22,7 +29,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 export function useAuth() {
   const ctx = useContext(AuthContext);
   if (!ctx) {
-    throw new Error("UseAuth must be used inside of a <AuthProivder>");
+    throw new Error("useAuth must be used inside of an <AuthProvider>");
   }
   return ctx;
 }
