@@ -1,4 +1,6 @@
+import { Button } from "@/components/buttons/button";
 import { LinkButton } from "@/components/buttons/link-button";
+import { apiRequest } from "@/utils/api";
 
 export default function HomePage() {
   return (
@@ -9,8 +11,14 @@ export default function HomePage() {
           <LinkButton to="/user" variant="primary">
             Login
           </LinkButton>
+          <Button onClick={request} >request</Button>
         </div>
       </header>
     </>
   );
+}
+
+async function request() {
+  const res = await apiRequest("http://localhost:5123/test")
+  console.log(res)
 }

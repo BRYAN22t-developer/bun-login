@@ -29,7 +29,7 @@ export function createMainRouter() {
 }
 
 function getUsers(req: Request, res: Response) {
-  const authCookie = req.cookies.authToken;
+  const authCookie = req.cookies.refresh_token;
   if (!authCookie) {
     return res.status(401).json({ message: "You are not logged in" });
   }

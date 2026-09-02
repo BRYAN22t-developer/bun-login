@@ -1,6 +1,7 @@
 import { OAuth2Client } from "google-auth-library";
 import { JsonUsersRepository } from "../repositories/json-users";
-import { joseJwtService } from "./jose-jwt.service";
+import crypto from "node:crypto";
+import { refreshTokensRepository } from "../repositories/json-refresh-tokens";
 
 const client = new OAuth2Client(
   process.env.GOOGLE_CLIENT_ID,
@@ -27,13 +28,6 @@ export async function googleCallbackService(code: string) {
 
   const payload = ticket.getPayload();
 
-
-  const user = await usersRepository.create({
-    username: "",
-    email: payload?.email as string,
-    provider: "Google",
-  });
-
   const email = payload?.email;
 
   if (!email) {
@@ -56,10 +50,20 @@ export async function googleCallbackService(code: string) {
     userId = user.id;
   }
 
-  const jwt = await joseJwtService.sign({
-    id: userId,
-    email: payload?.email
-  })
+  const token = crypto.randomBytes(40).toHex().toString();
 
-  return { ok: true, data: jwt };
+  const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+
+  const refreshToken = {
+    id: crypto.randomUUID(),
+    userId,
+    token,
+    expiresAt,
+    revokedAt: null,
+    createdAt: new Date(),
+  };
+
+  const result = await refreshTokensRepository.add(refreshToken);
+
+  return { ok: true, data: token };
 }

@@ -18,5 +18,7 @@ export function createAuthRouter() {
     res.status(200).json("ok")
   })
 
+  router.post("/refresh", controller.refresh)
+
   return router;
 }

@@ -6,8 +6,7 @@ export async function authentication(
   res: Response,
   next: NextFunction,
 ) {
-
-  const authHeader = req.headers["authorization"]
+  const authHeader = req.headers["authorization"];
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     res.status(401).json({ error: "Missing access token" });
@@ -18,7 +17,7 @@ export async function authentication(
     const token = authHeader.split(" ")[1];
 
     if (!token) {
-     return res.status(401).json({error: "Invalid token"})
+      return res.status(401).json({ error: "Invalid token" });
     }
 
     const payload = await joseJwtService.verify(token);
@@ -34,7 +33,7 @@ export async function authentication(
     };
 
     next();
-  } catch(e) {
+  } catch (e) {
     res.status(401).json({ error: "Invalid auth token" });
   }
 }

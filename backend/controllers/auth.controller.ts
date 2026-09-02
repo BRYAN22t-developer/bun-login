@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
 import { googleCallbackService } from "../services/google-callback.service";
+import { refreshTokenService } from "../services/refresh-token.service";
 
 export class AuthController {
   async google(req: Request, res: Response) {
@@ -26,12 +27,30 @@ export class AuthController {
         .redirect(`${process.env.FRONTEND_URL}/login?error=invalid_token`);
     }
 
-    res.cookie("authToken", result.data, {
+    res.cookie("refresh_token", result.data, {
       httpOnly: true,
       sameSite: "lax",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     return res.redirect(`${process.env.FRONTEND_URL}/user`);
+  }
+
+  async refresh(req: Request, res: Response) {
+    const token = req.cookies.refresh_token;
+
+    if (!token) {
+      return res.status(401).json({ error: "No Refresh token" });
+    }
+
+    const result = await refreshTokenService(token);
+
+    if (!result.ok) {
+      return res.json({ error: result.error.message });
+    }
+
+    console.log("access_token: ", result.data);
+
+    res.json({ access_token: result.data });
   }
 }

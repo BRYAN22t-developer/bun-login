@@ -1,5 +1,6 @@
 import { Button } from "@/components/buttons/button";
 import { config } from "@/config";
+import { apiRequest } from "@/utils/api";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +10,7 @@ export default function UserPage() {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await fetch(`${config.BACKEND_BASE_URL}/user`, {
+      const res = await apiRequest(`${config.BACKEND_BASE_URL}/user`, {
         credentials: "include",
       });
 
