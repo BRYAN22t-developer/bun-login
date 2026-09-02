@@ -18,6 +18,7 @@ export type RefreshToken = {
 };
 
 export interface RefreshTokensRepository {
+  getAll(): Promise<RefreshToken[] | null>;
   add(refreshToken: RefreshToken): Promise<RefreshToken | null>;
   getByToken(token: string): Promise<RefreshToken | null>;
   reemplace(

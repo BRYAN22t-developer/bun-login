@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import { googleCallbackService } from "../services/google-callback.service";
 import { refreshTokenService } from "../services/refresh-token.service";
+import { refreshTokensRepository } from "../repositories/json-refresh-tokens";
 
 export class AuthController {
   async google(req: Request, res: Response) {
@@ -56,5 +57,10 @@ export class AuthController {
     });
 
     res.json({ access_token: result.data.accessToken });
+  }
+
+  async getTokens(req: Request, res: Response) {
+    const refreshTokens = await refreshTokensRepository.getAll();
+    res.json(refreshTokens);
   }
 }

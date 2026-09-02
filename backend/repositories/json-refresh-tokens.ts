@@ -5,6 +5,18 @@ import type {
 import refreshTokens from "./db/tokens.json";
 
 export class JsonRefreshTokensRepository implements RefreshTokensRepository {
+  async getAll(): Promise<RefreshToken[] | null> {
+    const parsedRefreshTokens = refreshTokens.map((rf) => {
+      return {
+        ...rf,
+        expiresAt: new Date(rf.expiresAt),
+        createdAt: new Date(rf.createdAt),
+        revokedAt: rf.revokedAt ? new Date(rf.revokedAt) : null,
+      };
+    });
+    return parsedRefreshTokens;
+  }
+
   async add(refreshToken: RefreshToken): Promise<RefreshToken | null> {
     const foundRefreshToken = await this.getByToken(refreshToken.token);
 

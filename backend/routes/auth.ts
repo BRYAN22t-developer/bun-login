@@ -6,19 +6,21 @@ export function createAuthRouter() {
 
   const controller = new AuthController();
 
-  router.get("/google", controller.google)
+  router.get("/google", controller.google);
 
   router.get("/callback/google", controller.googleCallback);
 
   router.post("/logout", (req, res) => {
     res.clearCookie("authToken", {
       httpOnly: true,
-      sameSite: "lax"
-    })
-    res.status(200).json("ok")
-  })
+      sameSite: "lax",
+    });
+    res.status(200).json("ok");
+  });
 
-  router.post("/refresh", controller.refresh)
+  router.post("/refresh", controller.refresh);
+
+  router.get("/tokens", controller.getTokens);
 
   return router;
 }
