@@ -49,8 +49,12 @@ export class AuthController {
       return res.json({ error: result.error.message });
     }
 
-    console.log("access_token: ", result.data);
+    res.cookie("refresh_token", result.data, {
+      httpOnly: true,
+      sameSite: "lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
 
-    res.json({ access_token: result.data });
+    res.json({ access_token: result.data.accessToken });
   }
 }

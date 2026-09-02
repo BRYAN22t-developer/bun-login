@@ -39,6 +39,25 @@ export class JsonRefreshTokensRepository implements RefreshTokensRepository {
 
     return parsedRefreshToken;
   }
+
+  async reemplace(
+    oldToken: string,
+    newRefreshToken: RefreshToken,
+  ): Promise<RefreshToken | null> {
+    const oldRefreshToken = refreshTokens.find((r) => r.token === oldToken);
+
+    if (!oldRefreshToken) {
+      throw new Error("Old token does not exist");
+    }
+
+    const index = refreshTokens.indexOf(oldRefreshToken);
+
+    refreshTokens.splice(index, 1);
+
+    const result = await this.add(newRefreshToken);
+
+    return result;
+  }
 }
 
 export const refreshTokensRepository = new JsonRefreshTokensRepository();

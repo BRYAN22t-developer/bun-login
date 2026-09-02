@@ -9,15 +9,19 @@ export interface UsersRepository {
 }
 
 export type RefreshToken = {
-  id: string,
-  userId: string,
-  token: string,
-  expiresAt: Date,
-  revokedAt: Date | null,
-  createdAt: Date
-}
+  id: string;
+  userId: string;
+  token: string;
+  expiresAt: Date;
+  revokedAt: Date | null;
+  createdAt: Date;
+};
 
 export interface RefreshTokensRepository {
-  add(refreshToken: RefreshToken): Promise<RefreshToken | null>
-  getByToken(token: string): Promise<RefreshToken | null>
+  add(refreshToken: RefreshToken): Promise<RefreshToken | null>;
+  getByToken(token: string): Promise<RefreshToken | null>;
+  reemplace(
+    oldToken: string,
+    newRefreshToken: RefreshToken,
+  ): Promise<RefreshToken | null>;
 }
