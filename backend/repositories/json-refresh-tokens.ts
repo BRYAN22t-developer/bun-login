@@ -5,6 +5,20 @@ import type {
 import refreshTokens from "./db/tokens.json";
 
 export class JsonRefreshTokensRepository implements RefreshTokensRepository {
+  async delete(token: string): Promise<null> {
+    const refreshToken = refreshTokens.find((rf) => rf.token === token);
+
+    if (!refreshToken) {
+      return null;
+    }
+
+    const index = refreshTokens.indexOf(refreshToken);
+
+    refreshTokens.toSpliced(index, 1);
+
+    return null;
+  }
+
   async getAll(): Promise<RefreshToken[] | null> {
     const parsedRefreshTokens = refreshTokens.map((rf) => {
       return {

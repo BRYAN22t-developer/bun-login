@@ -1,6 +1,7 @@
 import { Button } from "@/components/buttons/button";
 import { LinkButton } from "@/components/buttons/link-button";
 import { config } from "@/config";
+import { accessTokenRef, updateReactToken } from "@/context/auth";
 import { apiRequest } from "@/utils/api";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -32,7 +33,8 @@ export default function UserPage() {
   return (
     <div>
       <p>{JSON.stringify(user)}</p>
-      <Button variant="secondary"
+      <Button
+        variant="secondary"
         onClick={async () => {
           try {
             const res = await fetch(`${config.BACKEND_BASE_URL}/auth/logout`, {
@@ -40,17 +42,16 @@ export default function UserPage() {
               credentials: "include",
             });
 
-
             if (res.ok) {
+              accessTokenRef.current = null;
+              updateReactToken.current(null);
               navigate("/");
-              return
+              return;
             }
 
-            console.error("Logout failed: ", res.status)
           } catch (e) {
-            console.error("Error: ", e)
+            console.error("Error: ", e);
           }
-
         }}
       >
         log out

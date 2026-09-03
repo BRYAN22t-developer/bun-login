@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import { googleCallbackService } from "../services/google-callback.service";
 import { refreshTokenService } from "../services/refresh-token.service";
 import { refreshTokensRepository } from "../repositories/json-refresh-tokens";
+import { logoutService } from "../services/logout.service";
 
 export class AuthController {
   async google(req: Request, res: Response) {
@@ -62,5 +63,22 @@ export class AuthController {
   async getTokens(req: Request, res: Response) {
     const refreshTokens = await refreshTokensRepository.getAll();
     res.json(refreshTokens);
+  }
+
+  async logout(req: Request, res: Response) {
+    const token = req.cookies["refresh_token"];
+
+    if (!token) {
+      return res.json("ok");
+    }
+
+    logoutService(token);
+
+    res.clearCookie("refresh_token", {
+      httpOnly: true,
+      sameSite: "lax",
+    });
+
+    res.json("ok");
   }
 }
