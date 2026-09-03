@@ -50,7 +50,7 @@ export class AuthController {
       return res.json({ error: result.error.message });
     }
 
-    res.cookie("refresh_token", result.data, {
+    res.cookie("refresh_token", result.data.refreshToken, {
       httpOnly: true,
       sameSite: "lax",
       maxAge: 7 * 24 * 60 * 60 * 1000,
