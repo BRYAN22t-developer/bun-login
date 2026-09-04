@@ -27,4 +27,5 @@ export interface RefreshTokensRepository {
   ): Promise<RefreshToken | null>;
   delete(token: string): Promise<null>;
   revoke(token: string): Promise<RefreshToken | null>;
+  activate(token: string): Promise<RefreshToken | null>;
 }

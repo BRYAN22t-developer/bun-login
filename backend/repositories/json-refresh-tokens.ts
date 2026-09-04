@@ -105,6 +105,25 @@ export class JsonRefreshTokensRepository implements RefreshTokensRepository {
 
     return parsedRefreshToken;
   }
+
+  async activate(token: string): Promise<RefreshToken | null> {
+    const refreshToken = refreshTokens.find((rf) => rf.token === token);
+
+    if (!refreshToken) {
+      return null;
+    }
+
+    refreshToken.revokedAt = null;
+
+    const parsedRefreshToken = {
+      ...refreshToken,
+      expiresAt: new Date(refreshToken.expiresAt),
+      createdAt: new Date(refreshToken.createdAt),
+      revokedAt: null,
+    };
+
+    return parsedRefreshToken;
+  }
 }
 
 export const refreshTokensRepository = new JsonRefreshTokensRepository();
