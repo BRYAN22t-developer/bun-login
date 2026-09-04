@@ -2,7 +2,7 @@ import { Button } from "@/components/buttons/button";
 import { config } from "@/config";
 import { apiRequest } from "@/utils/api";
 import { useEffect, useState } from "react";
-import { IconTrash, IconForbid2 } from "@tabler/icons-react";
+import { IconTrash, IconForbid2, IconCircleCheck } from "@tabler/icons-react";
 import { LinkButton } from "@/components/buttons/link-button";
 
 type RefreshToken = {
@@ -99,6 +99,9 @@ function row(refreshToken: RefreshToken) {
         >
           <IconTrash />
         </Button>
+        <Button onClick={() => {
+          activateRefreshToken(refreshToken.token).then(res => updateReactRefreshToken.current()).catch(err => alert(`Error: ${err}`))
+        }}><IconCircleCheck></IconCircleCheck></Button>
       </div>
     </div>
   );
@@ -120,4 +123,10 @@ async function revokeRefreshToken(refreshToken: string) {
       method: "POST",
     },
   );
+}
+
+async function activateRefreshToken(refreshToken: string) {
+  const res = await apiRequest(`${config.BACKEND_BASE_URL}/auth/activate/${refreshToken}`, {
+    method: "POST"
+  })
 }
