@@ -84,6 +84,27 @@ export class JsonRefreshTokensRepository implements RefreshTokensRepository {
 
     return result;
   }
+
+  async revoke(token: string): Promise<RefreshToken | null> {
+    const refershToken = refreshTokens.find((rf) => rf.token === token);
+
+    if (!refershToken) {
+      return null;
+    }
+
+    const now = new Date();
+
+    refershToken.revokedAt = now.toString();
+
+    const parsedRefreshToken = {
+      ...refershToken,
+      createdAt: new Date(refershToken.createdAt),
+      expiresAt: new Date(refershToken.expiresAt),
+      revokedAt: now,
+    };
+
+    return parsedRefreshToken;
+  }
 }
 
 export const refreshTokensRepository = new JsonRefreshTokensRepository();
