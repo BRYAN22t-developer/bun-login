@@ -2,7 +2,7 @@ import { Button } from "@/components/buttons/button";
 import { config } from "@/config";
 import { apiRequest } from "@/utils/api";
 import { useEffect, useState } from "react";
-import { IconTrash } from "@tabler/icons-react";
+import { IconTrash, IconForbid2 } from "@tabler/icons-react";
 import { LinkButton } from "@/components/buttons/link-button";
 
 type RefreshToken = {
@@ -81,10 +81,18 @@ function row(refreshToken: RefreshToken) {
       <div>
         <Button
           onClick={() => {
+            revokeRefreshToken(refreshToken.token)
+              .then((res) => updateReactRefreshToken.current())
+              .catch((err) => alert(`Error: ${err}`));
+          }}
+        >
+          <IconForbid2 />
+        </Button>
+        <Button
+          onClick={() => {
             deleteRefreshToken(refreshToken.token)
               .then((res) => {
                 updateReactRefreshToken.current();
-                alert("Token borrado");
               })
               .catch((err) => alert(`Error: ${err}`));
           }}
@@ -101,6 +109,15 @@ async function deleteRefreshToken(refreshToken: string) {
     `${config.BACKEND_BASE_URL}/auth/tokens/${refreshToken}`,
     {
       method: "DELETE",
+    },
+  );
+}
+
+async function revokeRefreshToken(refreshToken: string) {
+  const res = await apiRequest(
+    `${config.BACKEND_BASE_URL}/auth/revoke/${refreshToken}`,
+    {
+      method: "POST",
     },
   );
 }
