@@ -14,7 +14,7 @@ export class JsonRefreshTokensRepository implements RefreshTokensRepository {
 
     const index = refreshTokens.indexOf(refreshToken);
 
-    refreshTokens.toSpliced(index, 1);
+    refreshTokens.splice(index, 1);
 
     return null;
   }

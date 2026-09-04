@@ -3,10 +3,12 @@ import HomePage from "./pages/home/home";
 import UserPage from "./pages/user/user";
 import LoginPage from "./pages/login/login";
 import { ConfigPage } from "./pages/config/config";
+import { RefreshTokensPage } from "./pages/refresh-tokens/refresh-tokens";
 
 export const router = createBrowserRouter([
   { path: "/", element: <HomePage /> },
   { path: "/user", element: <UserPage /> },
   { path: "/login", element: <LoginPage /> },
   { path: "/config", element: <ConfigPage /> },
+  {path: "/refresh-tokens", element: <RefreshTokensPage />}
 ]);

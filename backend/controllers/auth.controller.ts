@@ -1,6 +1,9 @@
 import type { Request, Response } from "express";
 import { googleCallbackService } from "../services/google-callback.service";
-import { refreshTokenService } from "../services/refresh-token.service";
+import {
+  deleteRefreshTokenService,
+  refreshTokenService,
+} from "../services/refresh-token.service";
 import { refreshTokensRepository } from "../repositories/json-refresh-tokens";
 import { logoutService } from "../services/logout.service";
 
@@ -78,6 +81,22 @@ export class AuthController {
       httpOnly: true,
       sameSite: "lax",
     });
+
+    res.json("ok");
+  }
+
+  async deleteToken(req: Request, res: Response) {
+    const { token } = req.params;
+
+    if (!token) {
+      return res.status(204).json({ alert: "No token found" });
+    }
+
+    const tokenString = Array.isArray(token) ? token[0] : token;
+
+    const result = await deleteRefreshTokenService(tokenString as string);
+
+    console.log(result);
 
     res.json("ok");
   }

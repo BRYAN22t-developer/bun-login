@@ -12,6 +12,7 @@ export default function HomePage() {
             Login
           </LinkButton>
           <LinkButton to="/config" variant="primary">config</LinkButton>
+          <LinkButton to="/refresh-tokens" variant="primary">refresh tokens</LinkButton>
         </div>
       </header>
     </>

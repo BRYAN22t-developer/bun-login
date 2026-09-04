@@ -9,12 +9,13 @@
     "start": "NODE_ENV=production bun src/index.ts"
   },
   "dependencies": {
+    "@tabler/icons-react": "^3.46.0",
+    "bun-plugin-tailwind": "latest",
     "react": "^19",
     "react-dom": "^19",
     "react-router": "^8.3.0",
     "react-router-dom": "^7.18.2",
-    "tailwindcss": "^4",
-    "bun-plugin-tailwind": "latest"
+    "tailwindcss": "^4"
   },
   "devDependencies": {
     "@types/react": "^19",

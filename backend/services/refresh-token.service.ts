@@ -81,3 +81,7 @@ async function updateRefreshToken(userId: string, oldToken: string) {
 
   return result;
 }
+
+export async function deleteRefreshTokenService(token: string) {
+  await refreshTokensRepository.delete(token);
+}
