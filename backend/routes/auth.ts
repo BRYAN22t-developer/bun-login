@@ -20,5 +20,7 @@ export function createAuthRouter() {
 
   router.post("/revoke/:token", controller.revokeToken);
 
+  router.post("/activate/:token", controller.activateToken);
+
   return router;
 }

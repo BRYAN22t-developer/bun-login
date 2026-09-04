@@ -7,6 +7,7 @@ import {
 import { refreshTokensRepository } from "../repositories/json-refresh-tokens";
 import { logoutService } from "../services/logout.service";
 import { revokeRefreshTokenService } from "../services/revoke-token.service";
+import { activateRefreshTokenService } from "../services/activate-token.service";
 
 export class AuthController {
   async google(req: Request, res: Response) {
@@ -113,6 +114,26 @@ export class AuthController {
 
     if (!result) {
       res.status(204).json(result);
+    }
+
+    res.json("ok");
+  }
+
+  async activateToken(req: Request, res: Response) {
+    const { token } = req.params;
+
+    if (!token) {
+      res.status(400).json({ error: "No token recieved" });
+      return;
+    }
+
+    const tokenString = Array.isArray(token) ? token[0] : token;
+
+    const result = await activateRefreshTokenService(tokenString as string);
+
+    if (!result) {
+      res.status(204).json("ok");
+      return;
     }
 
     res.json("ok");
