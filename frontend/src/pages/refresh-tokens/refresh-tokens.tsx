@@ -79,18 +79,28 @@ function row(refreshToken: RefreshToken) {
       </p>
       <p className="truncate">{refreshToken.revokedAt ? "true" : ""}</p>
       <div>
-        {refreshToken.revokedAt !== null && <Button onClick={() => {
-          activateRefreshToken(refreshToken.token).then(res => updateReactRefreshToken.current()).catch(err => alert(`Error: ${err}`))
-        }}><IconCircleCheck></IconCircleCheck></Button> }
-        {refreshToken.revokedAt === null && <Button
-          onClick={() => {
-            revokeRefreshToken(refreshToken.token)
-              .then((res) => updateReactRefreshToken.current())
-              .catch((err) => alert(`Error: ${err}`));
-          }}
-        >
-          <IconForbid2 />
-        </Button>}
+        {refreshToken.revokedAt !== null && (
+          <Button
+            onClick={() => {
+              activateRefreshToken(refreshToken.token)
+                .then((res) => updateReactRefreshToken.current())
+                .catch((err) => alert(`Error: ${err}`));
+            }}
+          >
+            <IconCircleCheck></IconCircleCheck>
+          </Button>
+        )}
+        {refreshToken.revokedAt === null && (
+          <Button
+            onClick={() => {
+              revokeRefreshToken(refreshToken.token)
+                .then((res) => updateReactRefreshToken.current())
+                .catch((err) => alert(`Error: ${err}`));
+            }}
+          >
+            <IconForbid2 />
+          </Button>
+        )}
         <Button
           onClick={() => {
             deleteRefreshToken(refreshToken.token)
@@ -126,7 +136,10 @@ async function revokeRefreshToken(refreshToken: string) {
 }
 
 async function activateRefreshToken(refreshToken: string) {
-  const res = await apiRequest(`${config.BACKEND_BASE_URL}/auth/activate/${refreshToken}`, {
-    method: "POST"
-  })
+  const res = await apiRequest(
+    `${config.BACKEND_BASE_URL}/auth/activate/${refreshToken}`,
+    {
+      method: "POST",
+    },
+  );
 }
