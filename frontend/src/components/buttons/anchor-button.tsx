@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
 const variants = {
   primary:
@@ -28,7 +29,7 @@ export function AnchorButton({
     <a
       href={href}
       onClick={onClick}
-      className={variants[variant] + " " + className}
+      className={twMerge(variants[variant], className)}
     >
       {children}
     </a>

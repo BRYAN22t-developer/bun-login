@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
 const variants = {
   primary:
@@ -21,7 +22,7 @@ export function Button({ children, variant = "primary", type = "submit", onClick
   return (
     <button
       type={type}
-      className={variants[variant] + " " + className}
+      className={twMerge(variants[variant], className)}
       onClick={onClick}
     >
       {children}

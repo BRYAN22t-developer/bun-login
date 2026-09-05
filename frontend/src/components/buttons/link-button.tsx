@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { twMerge } from "tailwind-merge";
 
 const variants = {
   primary:
@@ -15,7 +16,7 @@ type LinkButtonProps = {
   variant?: Variant;
   to: string;
   onClick?: () => void;
-  className?: string
+  className?: string;
 };
 
 export function LinkButton({
@@ -26,7 +27,11 @@ export function LinkButton({
   className,
 }: LinkButtonProps) {
   return (
-    <Link to={to} onClick={onClick} className={variants[variant] + " " + className}>
+    <Link
+      to={to}
+      onClick={onClick}
+      className={twMerge(variants[variant], className)}
+    >
       {children}
     </Link>
   );
