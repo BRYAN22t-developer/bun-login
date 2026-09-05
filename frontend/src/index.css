@@ -11,4 +11,9 @@
   --color-text-primary: #18181B;
   --color-text-secondary: #71717A;
   --color-danger: #EF4444;
+  --color-danger-hover: #DC2626;
+  --color-success: #22C55E;
+  --color-success-hover: #16A34A;
+  --color-warning: #F59E0B;
+  --color-warning-hover: #D97706;
 }
