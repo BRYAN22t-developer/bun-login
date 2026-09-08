@@ -80,7 +80,7 @@ function row(refreshToken: RefreshToken) {
       <p className="truncate">{refreshToken.revokedAt ? "true" : ""}</p>
       <div>
         {refreshToken.revokedAt !== null && (
-          <Button
+          <Button variant="success"
             onClick={() => {
               activateRefreshToken(refreshToken.token)
                 .then((res) => updateReactRefreshToken.current())
@@ -91,7 +91,7 @@ function row(refreshToken: RefreshToken) {
           </Button>
         )}
         {refreshToken.revokedAt === null && (
-          <Button
+          <Button variant="warning"
             onClick={() => {
               revokeRefreshToken(refreshToken.token)
                 .then((res) => updateReactRefreshToken.current())
@@ -101,7 +101,7 @@ function row(refreshToken: RefreshToken) {
             <IconForbid2 />
           </Button>
         )}
-        <Button
+        <Button variant="danger"
           onClick={() => {
             deleteRefreshToken(refreshToken.token)
               .then((res) => {

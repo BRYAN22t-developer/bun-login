@@ -9,7 +9,7 @@ type ButtonProps = {
   className?: string
 };
 
-export function Button({ children, variant = "primary", type = "submit", onClick, className }: ButtonProps) {
+export function Button({ children, variant = "primary", type = "button", onClick, className }: ButtonProps) {
   return (
     <button
       type={type}
