@@ -1,4 +1,4 @@
-import type { UsersRepository } from "../types/repositories";
+import type { AuthRepository } from "../types/repositories";
 import users from "./db/users.json";
 
 export type User = {
@@ -9,7 +9,7 @@ export type User = {
   provider?: string
 };
 
-export class JsonUsersRepository implements UsersRepository {
+export class JsonUsersRepository implements AuthRepository {
   async login(
     email: string,
     password: string,

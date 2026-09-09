@@ -3,7 +3,7 @@ export type User = {
   username: string;
 };
 
-export interface UsersRepository {
+export interface AuthRepository {
   login(username: string, password: string): Promise<User | null>;
   findById(id: string): Promise<User | null>;
 }
