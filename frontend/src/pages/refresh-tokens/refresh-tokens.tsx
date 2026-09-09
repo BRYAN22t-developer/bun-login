@@ -128,7 +128,7 @@ async function deleteRefreshToken(refreshToken: string) {
 
 async function revokeRefreshToken(refreshToken: string) {
   const res = await apiRequest(
-    `${config.BACKEND_BASE_URL}/auth/revoke/${refreshToken}`,
+    `${config.BACKEND_BASE_URL}/auth/tokens/${refreshToken}/revoke`,
     {
       method: "POST",
     },
@@ -137,7 +137,7 @@ async function revokeRefreshToken(refreshToken: string) {
 
 async function activateRefreshToken(refreshToken: string) {
   const res = await apiRequest(
-    `${config.BACKEND_BASE_URL}/auth/activate/${refreshToken}`,
+    `${config.BACKEND_BASE_URL}/auth/tokens/${refreshToken}/activate`,
     {
       method: "POST",
     },
