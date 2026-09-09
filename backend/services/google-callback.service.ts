@@ -1,5 +1,5 @@
 import { OAuth2Client } from "google-auth-library";
-import { JsonUsersRepository } from "../repositories/json-users";
+import { JsonAuthRepository } from "../repositories/json-auth";
 import crypto from "node:crypto";
 import { refreshTokensRepository } from "../repositories/json-refresh-tokens";
 
@@ -9,7 +9,7 @@ const client = new OAuth2Client(
   "http://localhost:5123/auth/callback/google",
 );
 
-const usersRepository = new JsonUsersRepository();
+const usersRepository = new JsonAuthRepository();
 
 export async function googleCallbackService(code: string) {
   const { tokens } = await client.getToken(code);

@@ -1,17 +1,17 @@
 import { refreshTokensRepository } from "../repositories/json-refresh-tokens";
-import { JsonUsersRepository } from "../repositories/json-users";
+import { JsonAuthRepository } from "../repositories/json-auth";
 import type { Result } from "../types/result";
 import { joseJwtService } from "./jose-jwt.service";
 import crypto from "node:crypto";
 
-const usersRepository = new JsonUsersRepository();
+const authRepository = new JsonAuthRepository();
 
 type Tokens = {
   accessToken: string;
   refreshToken: string;
 };
 
-export async function refreshTokenService(
+export async function getRefreshTokenService(
   token: string,
 ): Promise<Result<Tokens, Error>> {
   const refreshToken = await refreshTokensRepository.getByToken(token);
@@ -30,7 +30,7 @@ export async function refreshTokenService(
     return { ok: false, error: new Error("Expired refresh token") };
   }
 
-  const user = await usersRepository.findById(refreshToken.userId);
+  const user = await authRepository.findById(refreshToken.userId);
 
   if (!user) {
     return { ok: false, error: new Error("Internal server error") };

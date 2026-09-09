@@ -6,10 +6,10 @@ export type User = {
   email: string;
   username: string;
   password?: string;
-  provider?: string
+  provider?: string;
 };
 
-export class JsonUsersRepository implements AuthRepository {
+export class JsonAuthRepository implements AuthRepository {
   async login(
     email: string,
     password: string,
@@ -49,12 +49,12 @@ export class JsonUsersRepository implements AuthRepository {
   }
 
   async create(user: Omit<User, "id">) {
-    const foundUser = await this.findByEmail(user.email)
+    const foundUser = await this.findByEmail(user.email);
     if (foundUser) {
       return null;
     }
 
-    const id = (parseInt(users.at(-1)?.id as string) + 1).toString()
+    const id = (parseInt(users.at(-1)?.id as string) + 1).toString();
 
     if (user.provider) {
       users.push({
@@ -63,18 +63,18 @@ export class JsonUsersRepository implements AuthRepository {
         email: user.email,
         provider: user.provider,
       });
-      return id
+      return id;
     }
 
     if (user.password) {
       users.push({
-         id,
-         username: user.username,
-         email: user.email,
-         password: user.password,
-       });
+        id,
+        username: user.username,
+        email: user.email,
+        password: user.password,
+      });
     }
 
-    return id
+    return id;
   }
 }

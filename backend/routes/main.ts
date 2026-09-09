@@ -1,10 +1,10 @@
 import { Router } from "express";
 import type { NextFunction, Request, Response } from "express";
 import { createAuthRouter } from "./auth";
-import { JsonUsersRepository } from "../repositories/json-users";
+import { JsonAuthRepository } from "../repositories/json-auth";
 import { authentication } from "../middlewares/bearer-authentication";
 
-const usersResporitoy = new JsonUsersRepository();
+const usersResporitoy = new JsonAuthRepository();
 
 export function createMainRouter() {
   const router = Router();
