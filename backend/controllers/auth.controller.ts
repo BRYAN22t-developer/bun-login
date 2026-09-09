@@ -8,6 +8,7 @@ import { refreshTokensRepository } from "../repositories/json-refresh-tokens";
 import { logoutService } from "../services/logout.service";
 import { revokeRefreshTokenService } from "../services/revoke-token.service";
 import { activateRefreshTokenService } from "../services/activate-token.service";
+import { loginService } from "../services/login.service";
 
 export class AuthController {
   async google(req: Request, res: Response) {
@@ -28,7 +29,6 @@ export class AuthController {
     const result = await googleCallbackService(code);
 
     if (!result.ok) {
-      console.log(result);
       return res
         .status(400)
         .redirect(`${process.env.FRONTEND_URL}/login?error=invalid_token`);
@@ -85,6 +85,22 @@ export class AuthController {
     });
 
     res.json("ok");
+  }
+
+  async login(req: Request, res: Response) {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ error: "not email or password" });
+    }
+
+    const result = await loginService(email, password);
+
+    if (!result) {
+      return res.status(404).json({ error: "not found" });
+    }
+
+    res.json({ email, id: result.id });
   }
 
   async deleteToken(req: Request, res: Response) {
