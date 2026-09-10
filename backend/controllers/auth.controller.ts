@@ -9,6 +9,7 @@ import { logoutService } from "../services/logout.service";
 import { revokeRefreshTokenService } from "../services/revoke-token.service";
 import { activateRefreshTokenService } from "../services/activate-token.service";
 import { loginService } from "../services/login.service";
+import { registerService } from "../services/register.service";
 
 export class AuthController {
   async google(req: Request, res: Response) {
@@ -159,5 +160,24 @@ export class AuthController {
     }
 
     res.json("ok");
+  }
+
+  async register(req: Request, res: Response) {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      res.status(400).json({
+        error: "not email nor password found",
+      });
+      return;
+    }
+
+    const result = await registerService(email, password);
+
+    if (!result) {
+      return res.status(400).json({ error: "something went wrong" });
+    }
+
+    res.json({ id: result.id, email: result.email });
   }
 }

@@ -14,6 +14,8 @@ export function createAuthRouter() {
 
   router.post("/login", controller.login);
 
+  router.post("/register", controller.register);
+
   router.post("/refresh", controller.refresh);
 
   router.get("/tokens", controller.getTokens);

@@ -1,11 +1,15 @@
 export type User = {
   id: string;
+  email: string;
   username: string;
+  password?: string;
+  provider?: string;
 };
 
 export interface AuthRepository {
   login(username: string, password: string): Promise<User | null>;
   findById(id: string): Promise<User | null>;
+  register(email: string, password: string): Promise<User | null>;
 }
 
 export type RefreshToken = {

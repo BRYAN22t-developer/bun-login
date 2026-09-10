@@ -1,29 +1,43 @@
-import type { AuthRepository } from "../types/repositories";
+import type { AuthRepository, User } from "../types/repositories";
 import users from "./db/users.json";
 
-export type User = {
-  id: string;
-  email: string;
-  username: string;
-  password?: string;
-  provider?: string;
-};
-
 export class JsonAuthRepository implements AuthRepository {
-  async login(
-    email: string,
-    password: string,
-  ): Promise<Pick<User, "id" | "username"> | null> {
+  async register(email: string, password: string): Promise<User | null> {
+    const currentUser = await this.findByEmail(email);
+
+    if (currentUser !== null) {
+      return currentUser;
+    }
+
+    const lastUser = users[users.length - 1];
+
+    let id = 0;
+    if (!lastUser) {
+      id = 1;
+    } else {
+      id = parseInt(lastUser.id) + 1;
+    }
+
+    users.push({
+      email,
+      password,
+      username: "",
+      id: id.toString(),
+    });
+
+    const user = await this.findByEmail(email);
+
+    return user;
+  }
+
+  async login(email: string, password: string): Promise<User | null> {
     const user = users.find((user) => user.email === email);
 
     if (user?.password !== password) {
       return null;
     }
 
-    return {
-      id: user.id,
-      username: user.username,
-    };
+    return user;
   }
 
   async findById(id: string): Promise<User | null> {
