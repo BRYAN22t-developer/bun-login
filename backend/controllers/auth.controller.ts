@@ -2,7 +2,7 @@ import type { Request, Response } from "express";
 import { googleCallbackService } from "../services/google-callback.service";
 import {
   deleteRefreshTokenService,
-  refreshTokenService,
+  getRefreshTokenService,
 } from "../services/refresh-token.service";
 import { refreshTokensRepository } from "../repositories/json-refresh-tokens";
 import { logoutService } from "../services/logout.service";
@@ -50,7 +50,7 @@ export class AuthController {
       return res.status(401).json({ error: "No Refresh token" });
     }
 
-    const result = await refreshTokenService(token);
+    const result = await getRefreshTokenService(token);
 
     if (!result.ok) {
       return res.json({ error: result.error.message });
@@ -96,11 +96,17 @@ export class AuthController {
 
     const result = await loginService(email, password);
 
-    if (!result) {
+    if (!result.ok) {
       return res.status(404).json({ error: "not found" });
     }
 
-    res.json({ email, id: result.id });
+    res.cookie("refresh_token", result.data, {
+      httpOnly: true,
+      sameSite: "lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
+    res.json("ok");
   }
 
   async deleteToken(req: Request, res: Response) {
