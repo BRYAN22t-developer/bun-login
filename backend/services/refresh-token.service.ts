@@ -3,6 +3,7 @@ import { JsonAuthRepository } from "../repositories/json-auth";
 import type { Result } from "../types/result";
 import { joseJwtService } from "./jose-jwt.service";
 import crypto from "node:crypto";
+import type { RefreshToken } from "../types/repositories";
 
 const authRepository = new JsonAuthRepository();
 
@@ -10,6 +11,30 @@ type Tokens = {
   accessToken: string;
   refreshToken: string;
 };
+
+export async function addRefreshTokenService(
+  userId: string,
+): Promise<Result<{ result: RefreshToken; token: string }, Error>> {
+  const token = crypto.randomBytes(40).toHex().toString();
+  const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+
+  const refreshToken = {
+    id: crypto.randomUUID(),
+    userId,
+    token,
+    expiresAt,
+    revokedAt: null,
+    createdAt: new Date(),
+  };
+
+  const result = await refreshTokensRepository.add(refreshToken);
+
+  if (!result) {
+    return { ok: false, error: new Error("repository error") };
+  }
+
+  return { ok: true, data: { result, token } };
+}
 
 export async function getRefreshTokenService(
   token: string,

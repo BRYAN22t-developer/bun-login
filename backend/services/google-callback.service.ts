@@ -1,7 +1,6 @@
 import { OAuth2Client } from "google-auth-library";
 import { JsonAuthRepository } from "../repositories/json-auth";
-import crypto from "node:crypto";
-import { refreshTokensRepository } from "../repositories/json-refresh-tokens";
+import { addRefreshTokenService } from "./refresh-token.service";
 
 const client = new OAuth2Client(
   process.env.GOOGLE_CLIENT_ID,
@@ -50,20 +49,11 @@ export async function googleCallbackService(code: string) {
     userId = user.id;
   }
 
-  const token = crypto.randomBytes(40).toHex().toString();
+  const result = await addRefreshTokenService(userId);
 
-  const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+  if (!result.ok) {
+    return result;
+  }
 
-  const refreshToken = {
-    id: crypto.randomUUID(),
-    userId,
-    token,
-    expiresAt,
-    revokedAt: null,
-    createdAt: new Date(),
-  };
-
-  const result = await refreshTokensRepository.add(refreshToken);
-
-  return { ok: true, data: token };
+  return { ok: true, data: result.data };
 }
