@@ -55,5 +55,5 @@ export async function googleCallbackService(code: string) {
     return result;
   }
 
-  return { ok: true, data: result.data };
+  return { ok: true, data: result.data.token };
 }
