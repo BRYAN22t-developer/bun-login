@@ -1,6 +1,8 @@
 import { Button } from "@/components/buttons/button";
 import { AnchorButton } from "@/components/buttons/anchor-button";
 import { config } from "@/config";
+import { login } from "@/utils/auth/login";
+import { router } from "@/router";
 
 export default function LoginPage() {
   return (
@@ -36,7 +38,10 @@ export default function LoginPage() {
             <Button type="submit">Login</Button>
           </form>
           <div className="mt-2 ">
-            <AnchorButton href={`${config.BACKEND_BASE_URL}/auth/google`} className="flex">
+            <AnchorButton
+              href={`${config.BACKEND_BASE_URL}/auth/google`}
+              className="flex"
+            >
               <GoogleSvg />
               <span className="w-full flex justify-center text-primary font-semibold">
                 Continue with Google
@@ -49,16 +54,28 @@ export default function LoginPage() {
   );
 }
 
-function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
+async function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
   event.preventDefault();
 
   const form = event.currentTarget;
   const formData = new FormData(form);
 
-  const email = formData.get("email");
-  const password = formData.get("password");
+  const email = formData.get("email")?.toString();
+  const password = formData.get("password")?.toString();
 
-  //TODO: LOGIN
+  if (!email || !password) {
+    alert(`Error: no email or password`);
+    return;
+  }
+
+  const res = await login(email, password);
+
+  if (!res.ok) {
+    alert(`Error: ${res.body}`)
+  }
+
+  router.navigate("/user")
+
 }
 
 function GoogleSvg() {
