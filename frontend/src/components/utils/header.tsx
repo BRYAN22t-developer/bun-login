@@ -1,4 +1,5 @@
 import { LinkButton } from "../buttons/link-button";
+import { Outlet } from "react-router-dom";
 
 export function Header() {
   return (
@@ -18,6 +19,7 @@ export function Header() {
           Register
         </LinkButton>
       </div>
+      <Outlet />
     </header>
   );
 }

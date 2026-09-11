@@ -5,12 +5,19 @@ import LoginPage from "./pages/login/login";
 import { ConfigPage } from "./pages/config/config";
 import { RefreshTokensPage } from "./pages/refresh-tokens/refresh-tokens";
 import { RegisterPage } from "./pages/register/register";
+import { Header } from "./components/utils/header";
 
 export const router = createBrowserRouter([
-  { path: "/", element: <HomePage /> },
-  { path: "/user", element: <UserPage /> },
-  { path: "/login", element: <LoginPage /> },
-  { path: "/config", element: <ConfigPage /> },
-  { path: "/refresh-tokens", element: <RefreshTokensPage /> },
-  { path: "/register", element: <RegisterPage />},
+  {
+    path: "/",
+    element: <Header />,
+    children: [
+      { path: "/", element: <HomePage /> },
+      { path: "/user", element: <UserPage /> },
+      { path: "/login", element: <LoginPage /> },
+      { path: "/config", element: <ConfigPage /> },
+      { path: "/refresh-tokens", element: <RefreshTokensPage /> },
+      { path: "/register", element: <RegisterPage /> },
+    ],
+  },
 ]);

@@ -1,7 +1,5 @@
-import { Button } from "@/components/buttons/button";
 import { LinkButton } from "@/components/buttons/link-button";
-import {  AuthContext, useAuth } from "@/context/auth";
-import { useContext } from "react";
+import {  useAuth } from "@/context/auth";
 
 export function ConfigPage() {
   const { accessToken } = useAuth()
