@@ -15,7 +15,9 @@ export class JsonUserRepository implements UserRepository {
   }
 
   async delete(id: string): Promise<null> {
-    const user = users.find((user) => user.id !== id);
+    const user = users.find((user) => user.id === id);
+
+    console.log(user);
 
     if (!user) {
       return null;
