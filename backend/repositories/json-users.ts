@@ -13,6 +13,19 @@ export class JsonUserRepository implements UserRepository {
     });
     return parsedUsers;
   }
+
+  async delete(id: string): Promise<null> {
+    const user = users.find((user) => user.id !== id);
+
+    if (!user) {
+      return null;
+    }
+
+    const index = users.indexOf(user);
+
+    users.splice(index, 1);
+    return null;
+  }
 }
 
 export const jsonUserRepository = new JsonUserRepository();

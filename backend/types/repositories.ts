@@ -14,6 +14,7 @@ export interface AuthRepository {
 
 export interface UserRepository {
   getAll(): Promise<Omit<User, "password">[] | null>;
+  delete(id: string): Promise<null>;
 }
 
 export type RefreshToken = {
