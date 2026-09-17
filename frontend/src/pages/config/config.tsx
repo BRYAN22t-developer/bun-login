@@ -18,7 +18,8 @@ export function ConfigPage() {
     <>
       <p className="mb-4">Access Token: {accessToken}</p>
       <LinkButton to="/">Go Home</LinkButton>
-      <UsersTable />
+      <div className="m-10 rounded-lg overflow-hidden border border-transparent"><UsersTable /></div>
+
     </>
   );
 }
@@ -33,25 +34,26 @@ function UsersTable() {
   }, []);
 
   return (
-    <table className="w-full">
-      <tr className="flex gap-4 justify-evenly flex-4">
-        <td>id</td>
-        <td>email</td>
-        <td>username</td>
-        <td>provider</td>
-      </tr>
-      {users
-        ? users?.map((user) => {
-            return (
-              <tr className="flex gap-4 justify-around">
-                <td className="flex-1">{user.id}</td>
-                <td className="flex-1">{user.email}</td>
-                <td className="flex-1">{user.username}</td>
-                <td className="flex-1">{user.provider ?? "Credentials"}</td>
-              </tr>
-            );
-          })
-        : ""}
+    <table className="w-full text-left border-collapse border-primary">
+      <thead>
+        <tr className="border-b border-gray-300 bg-primary text-surface">
+          <th className="p-3 font-semibold">id</th>
+          <th className="p-3 font-semibold">email</th>
+          <th className="p-3 font-semibold">username</th>
+          <th className="p-3 font-semibold">provider</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {users?.map((user) => (
+          <tr key={user.id} className="border-b border-gray-100 hover:bg-gray-50">
+            <td className="p-3">{user.id}</td>
+            <td className="p-3">{user.email}</td>
+            <td className="p-3">{user.username}</td>
+            <td className="p-3">{user.provider ?? "Credentials"}</td>
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 }
