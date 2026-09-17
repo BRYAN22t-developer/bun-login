@@ -8,5 +8,7 @@ export function createUserRouter() {
 
   router.get("/", controller.getAll);
 
+  router.delete("/:id", controller.delete);
+
   return router;
 }
