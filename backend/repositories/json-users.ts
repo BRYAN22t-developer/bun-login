@@ -28,6 +28,25 @@ export class JsonUserRepository implements UserRepository {
     users.splice(index, 1);
     return null;
   }
+
+  async update(
+    id: string,
+    newUser: Partial<Omit<User, "id" | "password">>,
+  ): Promise<Omit<User, "password"> | null> {
+    const user = users.find((user) => user.id === id);
+
+    if (!user) {
+      return null;
+    }
+
+    user.email = newUser.email ?? user.email;
+    user.username = newUser.username ?? user.username;
+    user.provider = newUser.provider ?? user.provider;
+
+    const { password, ...userWithoutPassword } = user;
+
+    return userWithoutPassword;
+  }
 }
 
 export const jsonUserRepository = new JsonUserRepository();
