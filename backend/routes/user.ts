@@ -10,5 +10,7 @@ export function createUserRouter() {
 
   router.delete("/:id", controller.delete);
 
+  router.patch("/:id", controller.update);
+
   return router;
 }
