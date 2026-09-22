@@ -3,6 +3,7 @@ import type { NextFunction, Request, Response } from "express";
 import { createAuthRouter } from "./auth";
 import { JsonAuthRepository } from "../repositories/json-auth";
 import { authentication } from "../middlewares/bearer-authentication";
+import { createUserRouter } from "./user";
 
 const usersResporitoy = new JsonAuthRepository();
 
@@ -24,6 +25,7 @@ export function createMainRouter() {
   });
 
   router.use("/auth", createAuthRouter());
+  router.use("/users", createUserRouter());
 
   return router;
 }

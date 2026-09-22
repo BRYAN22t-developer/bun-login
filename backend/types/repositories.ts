@@ -12,6 +12,15 @@ export interface AuthRepository {
   register(email: string, password: string): Promise<User | null>;
 }
 
+export interface UserRepository {
+  getAll(): Promise<Omit<User, "password">[] | null>;
+  delete(id: string): Promise<null>;
+  update(
+    id: string,
+    newUser: Partial<Omit<User, "id" | "password">>,
+  ): Promise<Omit<User, "password"> | null>;
+}
+
 export type RefreshToken = {
   id: string;
   userId: string;
