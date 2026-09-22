@@ -16,11 +16,6 @@ export default function UserPage() {
         credentials: "include",
       });
 
-      if (res.status === 401) {
-        navigate("/login");
-        return;
-      }
-
       const data = await res.json();
       setUser(data);
     };
@@ -28,7 +23,7 @@ export default function UserPage() {
     getData().catch((err) => console.error("Error fetching user:", err));
   }, []);
 
-  if (!user) return <p>Cargando...</p>;
+  if (!user) return <p>Loading...</p>;
 
   return (
     <div>
