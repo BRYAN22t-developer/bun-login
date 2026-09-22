@@ -28,10 +28,14 @@ export class UserController {
 
     const { username, email, provider } = req.body;
 
+    const parsedUsername = username === "" ? undefined : username;
+    const parsedEmail = email === "" ? undefined : email;
+    const parsedProvider = provider === "" ? undefined : provider;
+
     const updatedUser = await jsonUserRepository.update(id, {
-      username,
-      email,
-      provider,
+      username: parsedUsername,
+      email: parsedEmail,
+      provider: parsedProvider,
     });
 
     if (!updatedUser) {
