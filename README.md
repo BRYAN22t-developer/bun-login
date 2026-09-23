@@ -25,8 +25,8 @@ In this project I implemented login with username and password using jwt and log
 > 9. Set ``` PORT ``` as ``` 5123 ```, if you choose another one, you must edit **Authorized redirect URIs** above
 > 10. Set ``` FRONTEND_URL ``` as ``` http://localhost:5000 ``` or any other
 
-> ### Frontend .env
-> 11. Set ``` PORT ``` as ``` 5000 ```, if you choose another one, you must edit **Authorized origins of JavaScript** above
+> ### Frontend config
+> 11. in frontend/src/config.ts Set ``` BACKEND_BASE_URL ``` as ``` http://localhost:5123 ```, if you choose another one, you must edit **Authorized origins of JavaScript** above
 
 > ### Instalation
 > 12. You must have bun installed, if you don't, do it here: https://bun.com/docs/installation
