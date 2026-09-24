@@ -1,5 +1,5 @@
 import express from "express";
-import { createMainRouter } from "./routes/main";
+import { createMainRouter } from "./src/routes/main";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
