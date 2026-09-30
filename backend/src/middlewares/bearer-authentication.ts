@@ -22,7 +22,11 @@ export async function authentication(
 
     const payload = await joseJwtService.verify(token);
 
-    if (typeof payload.id !== "string" || typeof payload.email !== "string") {
+    if (
+      typeof payload.id !== "string" ||
+      typeof payload.email !== "string" ||
+      typeof payload.role !== "string"
+    ) {
       res.status(401).json({ error: "Invalid token payload" });
       return;
     }
@@ -30,6 +34,7 @@ export async function authentication(
     req.payload = {
       id: payload.id,
       email: payload.email,
+      role: payload.role,
     };
 
     next();
