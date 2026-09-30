@@ -3,186 +3,217 @@
     "id": "1",
     "username": "alexmartinez",
     "email": "alex.martinez@example.com",
-    "password": "TestPass01!"
+    "password": "TestPass01!",
+    "role": "admin"
   },
   {
     "id": "2",
     "username": "sofia.hernandez",
     "email": "sofia.hernandez@example.com",
-    "password": "TestPass02!"
+    "password": "TestPass02!",
+    "role": "user"
   },
   {
     "id": "3",
     "username": "carlos.ramirez",
     "email": "carlos.ramirez@example.com",
-    "password": "TestPass03!"
+    "password": "TestPass03!",
+    "role": "user"
   },
   {
     "id": "4",
     "username": "laura.garcia",
     "email": "laura.garcia@example.com",
-    "password": "TestPass04!"
+    "password": "TestPass04!",
+    "role": "user"
   },
   {
     "id": "5",
     "username": "diego.lopez",
     "email": "diego.lopez@example.com",
-    "password": "TestPass05!"
+    "password": "TestPass05!",
+    "role": "user"
   },
   {
     "id": "6",
     "username": "valentina.torres",
     "email": "valentina.torres@example.com",
-    "password": "TestPass06!"
+    "password": "TestPass06!",
+    "role": "user"
   },
   {
     "id": "7",
     "username": "miguel.sanchez",
     "email": "miguel.sanchez@example.com",
-    "password": "TestPass07!"
+    "password": "TestPass07!",
+    "role": "user"
   },
   {
     "id": "8",
     "username": "daniela.flores",
     "email": "daniela.flores@example.com",
-    "password": "TestPass08!"
+    "password": "TestPass08!",
+    "role": "user"
   },
   {
     "id": "9",
     "username": "jorge.mendoza",
     "email": "jorge.mendoza@example.com",
-    "password": "TestPass09!"
+    "password": "TestPass09!",
+    "role": "user"
   },
   {
     "id": "10",
     "username": "camila.vargas",
     "email": "camila.vargas@example.com",
-    "password": "TestPass10!"
+    "password": "TestPass10!",
+    "role": "user"
   },
   {
     "id": "11",
     "username": "andres.castillo",
     "email": "andres.castillo@example.com",
-    "password": "TestPass11!"
+    "password": "TestPass11!",
+    "role": "user"
   },
   {
     "id": "12",
     "username": "fernanda.cruz",
     "email": "fernanda.cruz@example.com",
-    "password": "TestPass12!"
+    "password": "TestPass12!",
+    "role": "user"
   },
   {
     "id": "13",
     "username": "ricardo.morales",
     "email": "ricardo.morales@example.com",
-    "password": "TestPass13!"
+    "password": "TestPass13!",
+    "role": "user"
   },
   {
     "id": "14",
     "username": "gabriela.ortiz",
     "email": "gabriela.ortiz@example.com",
-    "password": "TestPass14!"
+    "password": "TestPass14!",
+    "role": "user"
   },
   {
     "id": "15",
     "username": "eduardo.reyes",
     "email": "eduardo.reyes@example.com",
-    "password": "TestPass15!"
+    "password": "TestPass15!",
+    "role": "user"
   },
   {
     "id": "16",
     "username": "mariana.navarro",
     "email": "mariana.navarro@example.com",
-    "password": "TestPass16!"
+    "password": "TestPass16!",
+    "role": "user"
   },
   {
     "id": "17",
     "username": "sergio.dominguez",
     "email": "sergio.dominguez@example.com",
-    "password": "TestPass17!"
+    "password": "TestPass17!",
+    "role": "user"
   },
   {
     "id": "18",
     "username": "paola.jimenez",
     "email": "paola.jimenez@example.com",
-    "password": "TestPass18!"
+    "password": "TestPass18!",
+    "role": "user"
   },
   {
     "id": "19",
     "username": "roberto.ruiz",
     "email": "roberto.ruiz@example.com",
-    "password": "TestPass19!"
+    "password": "TestPass19!",
+    "role": "user"
   },
   {
     "id": "20",
     "username": "ana.mendoza",
     "email": "ana.mendoza@example.com",
-    "password": "TestPass20!"
+    "password": "TestPass20!",
+    "role": "user"
   },
   {
     "id": "21",
     "username": "fernando.silva",
     "email": "fernando.silva@example.com",
-    "password": "TestPass21!"
+    "password": "TestPass21!",
+    "role": "user"
   },
   {
     "id": "22",
     "username": "lucia.ramos",
     "email": "lucia.ramos@example.com",
-    "password": "TestPass22!"
+    "password": "TestPass22!",
+    "role": "user"
   },
   {
     "id": "23",
     "username": "oscar.vera",
     "email": "oscar.vera@example.com",
-    "password": "TestPass23!"
+    "password": "TestPass23!",
+    "role": "user"
   },
   {
     "id": "24",
     "username": "isabel.martin",
     "email": "isabel.martin@example.com",
-    "password": "TestPass24!"
+    "password": "TestPass24!",
+    "role": "user"
   },
   {
     "id": "25",
     "username": "raul.cabrera",
     "email": "raul.cabrera@example.com",
-    "password": "TestPass25!"
+    "password": "TestPass25!",
+    "role": "user"
   },
   {
     "id": "26",
     "username": "patricia.mendez",
     "email": "patricia.mendez@example.com",
-    "password": "TestPass26!"
+    "password": "TestPass26!",
+    "role": "user"
   },
   {
     "id": "27",
     "username": "hector.espinoza",
     "email": "hector.espinoza@example.com",
-    "password": "TestPass27!"
+    "password": "TestPass27!",
+    "role": "user"
   },
   {
     "id": "28",
     "username": "monica.salazar",
     "email": "monica.salazar@example.com",
-    "password": "TestPass28!"
+    "password": "TestPass28!",
+    "role": "user"
   },
   {
     "id": "29",
     "username": "ivan.aguilar",
     "email": "ivan.aguilar@example.com",
-    "password": "TestPass29!"
+    "password": "TestPass29!",
+    "role": "user"
   },
   {
     "id": "30",
     "username": "adriana.paredes",
     "email": "adriana.paredes@example.com",
-    "password": "TestPass30!"
+    "password": "TestPass30!",
+    "role": "user"
   },
   {
     "id": "31",
     "username": "Lucas",
     "email": "example@google.com",
-    "provider": "Google"
+    "provider": "Google",
+    "role": "user"
   }
 ]
