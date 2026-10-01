@@ -65,6 +65,7 @@ export async function getRefreshTokenService(
     const accessToken = await joseJwtService.sign({
       id: user.id,
       email: user.email,
+      role: user.role,
     });
 
     const newRefreshToken = await updateRefreshToken(

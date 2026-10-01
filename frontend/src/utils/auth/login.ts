@@ -7,6 +7,7 @@ export async function login(email: string, password: string) {
       "Content-Type": "application/json",
     },
     method: "POST",
+    credentials: "include",
     body: JSON.stringify({ email, password }),
   });
 

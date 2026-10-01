@@ -23,6 +23,7 @@ export class JsonAuthRepository implements AuthRepository {
       password,
       username: "",
       id: id.toString(),
+      role: "user",
     });
 
     const user = await this.findByEmail(email);
@@ -76,6 +77,7 @@ export class JsonAuthRepository implements AuthRepository {
         username: user.username,
         email: user.email,
         provider: user.provider,
+        role: "user",
       });
       return id;
     }
@@ -86,6 +88,7 @@ export class JsonAuthRepository implements AuthRepository {
         username: user.username,
         email: user.email,
         password: user.password,
+        role: "user",
       });
     }
 

@@ -4,6 +4,7 @@ export type User = {
   username: string;
   password?: string;
   provider?: string;
+  role: string;
 };
 
 export interface AuthRepository {
